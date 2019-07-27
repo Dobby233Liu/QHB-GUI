@@ -40,5 +40,19 @@ namespace QHB_GUI
                 // todo
             //}
         }
+
+        private void Button1_Click(object sender, EventArgs e)
+        {
+            if (EditMode)
+            {
+                refForm.list[origObjIndex] = new GeneralBomber(textBox1.Text, textBox5.Text, textBox2.Text, comboBox2.Text);
+            }
+            else
+            {
+                refForm.list.Add(new GeneralBomber(textBox1.Text, textBox5.Text, textBox2.Text, comboBox2.Text));
+            }
+            refForm.UpdateList();
+            this.Close();
+        }
     }
 }

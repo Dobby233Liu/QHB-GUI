@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -16,10 +17,11 @@ namespace QHB_GUI
 {
     public partial class 骗骗子神器 : Form
     {
-        public List<GeneralBomber> list;
-        public MemoryStream st;
-        public StreamWriter sw;
-        public StreamReader streamReader;
+        public List<GeneralBomber> list = new List<GeneralBomber>();
+        [DllImport("kernel32.dll")]
+        public static extern Boolean AllocConsole();
+        [DllImport("kernel32.dll")]
+        public static extern Boolean FreeConsole();
         public 骗骗子神器()
         {
             InitializeComponent();
@@ -27,15 +29,11 @@ namespace QHB_GUI
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            st = new MemoryStream();
-            sw = new StreamWriter(st);
-            streamReader = new StreamReader(st);
-            Console.SetOut(sw);
+            AllocConsole();
         }
 
         private void Button1_Click(object sender, EventArgs e)
         {
-            Console.WriteLine("user open aboutbox");
             new AboutBox().ShowDialog();
         }
 
@@ -55,20 +53,46 @@ namespace QHB_GUI
 
         private void Button2_Click(object sender, EventArgs e)
         {
-            new BomberEdit().ShowDialog();
+            if(listBox1.SelectedIndex < 0)
+            {
+                MessageBox.Show("没有选择任务", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+            BomberEdit be = new BomberEdit();
+            be.refForm = this;
+            be.origObjIndex = listBox1.SelectedIndex;
+            be.Updating();
+            be.ShowDialog();
         }
 
-        private void Timer1_Tick(object sender, EventArgs e)
+        private void Button4_Click(object sender, EventArgs e)
         {
-            Debug.WriteLine("tick");
-            string str = streamReader.ReadLine();
-            if (str != null)
+            if (listBox1.SelectedIndex < 0)
             {
-                textBox1.Text += str;
-                textBox1.Text += "\n";
-                Debug.WriteLine("tick: writeline");
+                MessageBox.Show("没有选择任务", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
             }
-            Debug.WriteLine("tick: end");
+            var bomber = list[listBox1.SelectedIndex];
+            BomberPerformer performer = new BomberPerformer(bomber);//创建轰炸实例
+            performer.ThreadCount = 128;//128线程
+            bomber.OnBomberComplete += Bomber_OnBomberComplete; ;//当请求成功时的事件
+            performer.StartBomber();
+        }
+
+        private void Bomber_OnBomberComplete(object sender, BomberResultEventArgs e)
+        {
+            
+        }
+
+        private void Button3_Click(object sender, EventArgs e)
+        {
+            BomberEdit be = new BomberEdit();
+            be.refForm = this;
+            be.origObjIndex = list.Count;
+            Debug.WriteLine(list.Count);
+            be.EditMode = false;
+            be.ShowDialog();
+            // be.Updating(); This time we'll not use a existing Bomber
         }
     }
 }
