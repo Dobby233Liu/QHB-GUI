@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // 控制。更改这些特性值可修改
 // 与程序集关联的信息。
 [assembly: AssemblyTitle("QHB-GUI")]
-[assembly: AssemblyDescription("本应用程序仅供学习用途，请在 24 小时内删除！")]
+[assembly: AssemblyDescription("“专治骗子”程序（https://github.com/ZYFDroid/QQ-Hacker-Bomber）的GUI版，基于 https://github.com/Dobby233Liu/QQ-Hacker-Bomber-lib/。 \n GitHub: https://github.com/Dobby233Liu/QHB-GUI \n本应用程序仅供学习用途，请在 24 小时内删除！")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("QHB-GUI")]
