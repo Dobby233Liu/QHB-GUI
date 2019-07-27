@@ -37,11 +37,6 @@ namespace QHB_GUI
             new AboutBox().ShowDialog();
         }
 
-        private void ListBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
         public void UpdateList()
         {
             listBox1.Items.Clear();
@@ -75,13 +70,7 @@ namespace QHB_GUI
             var bomber = list[listBox1.SelectedIndex];
             BomberPerformer performer = new BomberPerformer(bomber);//创建轰炸实例
             performer.ThreadCount = 128;//128线程
-            bomber.OnBomberComplete += Bomber_OnBomberComplete; ;//当请求成功时的事件
             performer.StartBomber();
-        }
-
-        private void Bomber_OnBomberComplete(object sender, BomberResultEventArgs e)
-        {
-            
         }
 
         private void Button3_Click(object sender, EventArgs e)
