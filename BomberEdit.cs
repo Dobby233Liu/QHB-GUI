@@ -29,7 +29,7 @@ namespace QHB_GUI
 
         public void Updating()
         {
-            if (EditMode) return;
+            if (!EditMode) return;
             var o = refForm.list[origObjIndex];
             // comboBox1.SelectedIndex = (o.GetType().Name.Equals("GeneralBomberWithAdditional") ? 1 : 0);
             comboBox2.SelectedIndex = (o.HttpMethod.ToUpper().Equals("POST") ? 1 : 0);
