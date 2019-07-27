@@ -27,6 +27,8 @@ namespace QHB_GUI
             InitializeComponent();
         }
 
+        private int cnt;
+
         private void Form1_Load(object sender, EventArgs e)
         {
             AllocConsole();
@@ -70,7 +72,15 @@ namespace QHB_GUI
             var bomber = list[listBox1.SelectedIndex];
             BomberPerformer performer = new BomberPerformer(bomber);//创建轰炸实例
             performer.ThreadCount = 128;//128线程
+            bomber.OnBomberComplete += Bomber_OnBomberComplete;
             performer.StartBomber();
+        }
+
+        private void Bomber_OnBomberComplete(object sender, BomberResultEventArgs e)
+        {
+            cnt++;
+            Console.Title = cnt.ToString();
+            BomberUtils.PrintResult(e.UsesUser, e.UsesPassword, e.ReturnValue);
         }
 
         private void Button3_Click(object sender, EventArgs e)
