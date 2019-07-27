@@ -101,6 +101,5 @@ namespace QHB_GUI
             }
         }
         #endregion
-
     }
 }
