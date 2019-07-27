@@ -35,6 +35,7 @@ namespace QHB_GUI
             comboBox2.SelectedIndex = (o.HttpMethod.ToUpper().Equals("POST") ? 1 : 0);
             textBox5.Text = o.UserKey; //username key
             textBox2.Text = o.PassowordKey; //password key
+            textBox1.Text = o.BaseUrl;
             //if(comboBox1.SelectedIndex == 1)
             //{
                 // todo
