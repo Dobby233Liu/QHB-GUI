@@ -69,11 +69,17 @@ namespace QHB_GUI
                 MessageBox.Show("没有选择任务", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
-            var bomber = list[listBox1.SelectedIndex];
-            BomberPerformer performer = new BomberPerformer(bomber);//创建轰炸实例
-            performer.ThreadCount = 128;//128线程
-            bomber.OnBomberComplete += Bomber_OnBomberComplete;
-            performer.StartBomber();
+            try
+            {
+                var bomber = list[listBox1.SelectedIndex];
+                BomberPerformer performer = new BomberPerformer(bomber);//创建轰炸实例
+                performer.ThreadCount = Int32.Parse(textBox1.Text);
+                bomber.OnBomberComplete += Bomber_OnBomberComplete;
+                performer.StartBomber();
+            } catch(Exception exp)
+            {
+                Console.WriteLine(exp.StackTrace);
+            }
         }
 
         private void Bomber_OnBomberComplete(object sender, BomberResultEventArgs e)
@@ -92,6 +98,24 @@ namespace QHB_GUI
             be.EditMode = false;
             be.ShowDialog();
             // be.Updating(); This time we'll not use a existing Bomber
+        }
+
+        private void TextBox1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 0x20) e.KeyChar = (char)0;  //禁止空格键
+            if (e.KeyChar == (char)46) e.KeyChar = (char)0;
+            if ((e.KeyChar == 0x2D) && (((TextBox)sender).Text.Length == 0)) return;   //处理负数
+            if (e.KeyChar > 0x20)
+            {
+                try
+                {
+                    double.Parse(((TextBox)sender).Text + e.KeyChar.ToString());
+                }
+                catch
+                {
+                    e.KeyChar = (char)0;
+                }
+            }
         }
     }
 }
