@@ -25,21 +25,22 @@ namespace QHB_GUI
         private void BomberEdit_Load(object sender, EventArgs e)
         {
             comboBox2.SelectedIndex = 1;
+            comboBox2.SelectedIndex = 0;
         }
 
         public void Updating()
         {
             if (!EditMode) return;
             var o = refForm.list[origObjIndex];
-            // comboBox1.SelectedIndex = (o.GetType().Name.Equals("GeneralBomberWithAdditional") ? 1 : 0);
+            comboBox1.SelectedIndex = (o.GetType().Name.Equals("GeneralBomberWithAdditional") ? 1 : 0);
             comboBox2.SelectedIndex = (o.HttpMethod.ToUpper().Equals("POST") ? 1 : 0);
             textBox5.Text = o.UserKey; //username key
             textBox2.Text = o.PassowordKey; //password key
             textBox1.Text = o.BaseUrl;
-            //if(comboBox1.SelectedIndex == 1)
-            //{
+            if(comboBox1.SelectedIndex == 1)
+            {
                 // todo
-            //}
+            }
         }
 
         private void Button1_Click(object sender, EventArgs e)

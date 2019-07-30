@@ -41,6 +41,8 @@
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // button1
@@ -132,7 +134,7 @@
             "POST"});
             this.comboBox2.Location = new System.Drawing.Point(116, 6);
             this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(154, 26);
+            this.comboBox2.Size = new System.Drawing.Size(73, 26);
             this.comboBox2.TabIndex = 12;
             // 
             // textBox5
@@ -145,7 +147,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(350, 8);
+            this.label1.Location = new System.Drawing.Point(406, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(35, 18);
             this.label1.TabIndex = 15;
@@ -153,16 +155,40 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(404, 3);
+            this.textBox1.Location = new System.Drawing.Point(447, 3);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(292, 28);
+            this.textBox1.Size = new System.Drawing.Size(249, 28);
             this.textBox1.TabIndex = 16;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(222, 9);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(44, 18);
+            this.label7.TabIndex = 17;
+            this.label7.Text = "类型";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "通用",
+            "有附加"});
+            this.comboBox1.Location = new System.Drawing.Point(272, 6);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(114, 26);
+            this.comboBox1.TabIndex = 18;
+            this.comboBox1.SelectedIndex = 0;
             // 
             // BomberEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(708, 237);
+            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBox5);
@@ -180,7 +206,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "BomberEdit";
-            this.Text = "BomberEdit";
+            this.Text = "轰炸机参数";
             this.Load += new System.EventHandler(this.BomberEdit_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -202,5 +228,7 @@
         private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }
