@@ -26,6 +26,10 @@ namespace QHB_GUI
         {
             comboBox2.SelectedIndex = 1;
             comboBox1.SelectedIndex = 1;
+            textBox3.Enabled = !(comboBox1.SelectedIndex == 1);
+            textBox3.ReadOnly = (comboBox1.SelectedIndex == 1);
+            textBox4.Enabled = !(comboBox1.SelectedIndex == 1);
+            textBox4.ReadOnly = (comboBox1.SelectedIndex == 1);
         }
 
         public void Updating()
@@ -82,13 +86,10 @@ namespace QHB_GUI
 
         private void ComboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(comboBox1.SelectedIndex == 0) // toggle editablity
-            {
-                textBox3.Enabled = false;
-                textBox3.ReadOnly = true;
-                textBox4.Enabled = false;
-                textBox4.ReadOnly = true;
-            }
+            textBox3.Enabled = !(comboBox1.SelectedIndex == 1);
+            textBox3.ReadOnly = (comboBox1.SelectedIndex == 1);
+            textBox4.Enabled = !(comboBox1.SelectedIndex == 1);
+            textBox4.ReadOnly = (comboBox1.SelectedIndex == 1);
         }
     }
 }
